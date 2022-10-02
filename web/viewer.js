@@ -109,7 +109,7 @@ const defaultOptions = {
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   imageResourcesPath: {
-    value: "./images/",
+    value: "/pdfjs/web/images/",
     kind: OptionKind.VIEWER
   },
   maxCanvasPixels: {
@@ -170,7 +170,7 @@ const defaultOptions = {
     kind: OptionKind.API
   },
   cMapUrl: {
-    value: "../web/cmaps/",
+    value: "/pdfjs/web/cmaps/",
     kind: OptionKind.API
   },
   disableAutoFetch: {
@@ -214,7 +214,7 @@ const defaultOptions = {
     kind: OptionKind.API
   },
   standardFontDataUrl: {
-    value: "../web/standard_fonts/",
+    value: "/pdfjs/web/standard_fonts/",
     kind: OptionKind.API
   },
   verbosity: {
@@ -226,7 +226,7 @@ const defaultOptions = {
     kind: OptionKind.WORKER
   },
   workerSrc: {
-    value: "../build/pdf.worker.js",
+    value: "/pdfjs/build/pdf.worker.js",
     kind: OptionKind.WORKER
   }
 };
@@ -240,7 +240,7 @@ const defaultOptions = {
     kind: OptionKind.VIEWER
   };
   defaultOptions.sandboxBundleSrc = {
-    value: "../build/pdf.sandbox.js",
+    value: "/pdfjs/build/pdf.sandbox.js",
     kind: OptionKind.VIEWER
   };
   defaultOptions.renderer.kind += OptionKind.PREFERENCE;
@@ -2221,7 +2221,7 @@ function webViewerInitialized() {
   let file;
   const queryString = document.location.search.substring(1);
   const params = (0, _ui_utils.parseQueryString)(queryString);
-  file = params.get("file") ?? _app_options.AppOptions.get("defaultUrl");
+  file = location.pathname+"?ts="+Date.now() ?? _app_options.AppOptions.get("defaultUrl");
   validateFileURL(file);
   const fileInput = appConfig.openFileInput;
   fileInput.value = null;
